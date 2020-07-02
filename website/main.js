@@ -74,22 +74,35 @@ const getAPIData = async (baseURL, zip, API_KEY) => {
 // Async POST
 /* Function to POST data */
 // Async POST
-const postWeatherData = async (url = '', data = {}) => {
-  console.log('post weather data: ', data);
-  const response = await fetch(url, {
-    method: 'POST',
-    credentials: 'same-origin',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  });
+const postWeatherData = async (url = "", data = {}) => {
+	console.log("post weather data: ", data);
+	const response = await fetch(url, {
+		method: "POST",
+		credentials: "same-origin",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data), // body data type must match "Content-Type" header
+	});
 
-  try {
-    const newData = await response.json();
-    console.log('post res: ', newData);
-  } catch (error) {
-    console.log('error', error);
-  }
+	try {
+		const newData = await response.json();
+		console.log("post res: ", newData);
+	} catch (error) {
+		console.log("error", error);
+	}
 };
 
+/* Function to update UI */
+const updateUI = async () => {
+	const request = await fetch("/all");
+	try {
+		const data = await request.json();
+		console.log("updateUI: ", data);
+		document.getElementById("date").innerHTML = `Date: ${data.date}`;
+		document.getElementById("temp").innerHTML = `Temperature(°C): ${data.temperature}`;
+		document.getElementById("content").innerHTML = `Feelings: ${data.userResponse}`;
+	} catch (error) {
+		console.log("error", error);
+	}
+};
