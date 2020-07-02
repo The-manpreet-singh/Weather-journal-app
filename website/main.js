@@ -27,17 +27,17 @@ function convertDate(unixtimestamp) {
 
 // Event listener to add function to existing HTML DOM element
 /* Function called by event listener */
-document.getElementById("generate").addEventListener("click", performAction);
+document.getElementById("generate").addEventListener("click", displayAction);
 
-function performAction() {
+function displayAction() {
 	const zip = document.getElementById("zip").value;
 	const feelings = document.getElementById("feelings").value;
 
-	getAPIData(baseURL, zip, API_KEY)
+	getDataApi(baseURL, zip, API_KEY)
 		.then(function (data) {
 			// Add data
 			console.log("AllData from api: ", data);
-			postWeatherData("/addWeatherData", {
+			postDataApi("/addWeatherData", {
 				temperature: data.main.temp,
 				date: convertDate(data.dt),
 				userResponse: feelings,
@@ -48,7 +48,7 @@ function performAction() {
 
 // Async GET
 /* Function to GET Web API Data*/
-const getAPIData = async (baseURL, zip, API_KEY) => {
+const getDataApi = async (baseURL, zip, API_KEY) => {
 	if (zip.toString().length !== 5) {
 		alert("zip should be of length 5!");
 	} else {
@@ -74,7 +74,7 @@ const getAPIData = async (baseURL, zip, API_KEY) => {
 // Async POST
 /* Function to POST data */
 // Async POST
-const postWeatherData = async (url = "", data = {}) => {
+const postDataApi = async (url = "", data = {}) => {
 	console.log("post weather data: ", data);
 	const response = await fetch(url, {
 		method: "POST",
