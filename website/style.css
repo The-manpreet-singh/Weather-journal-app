@@ -77,11 +77,11 @@ body {
 	grid-area: feeling;
 }
 
-.adderate-button {
+.generate-button {
 	grid-area: add;
 }
 
-#adderate {
+#generate {
 	color: whitesmoke;
 	cursor: pointer;
 }
