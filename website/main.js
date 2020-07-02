@@ -24,3 +24,24 @@ function convertDate(unixtimestamp) {
 
 	return convertedTime;
 }
+
+// Event listener to add function to existing HTML DOM element
+/* Function called by event listener */
+document.getElementById("generate").addEventListener("click", performAction);
+
+function performAction() {
+	const zip = document.getElementById("zip").value;
+	const feelings = document.getElementById("feelings").value;
+
+	getAPIData(baseURL, zip, API_KEY)
+		.then(function (data) {
+			// Add data
+			console.log("AllData from api: ", data);
+			postWeatherData("/addWeatherData", {
+				temperature: data.main.temp,
+				date: convertDate(data.dt),
+				userResponse: feelings,
+			});
+		})
+		.then(() => updateUI());
+}
