@@ -14,7 +14,7 @@ The project can be run by running the command "node server.js" in the root direc
 
 ## Overview
 
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI.
+In this project I created an asynchronous web app that uses Web API and user data to dynamically update the UI.
 
 ## Instructions
 
